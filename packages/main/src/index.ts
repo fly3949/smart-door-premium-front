@@ -31,6 +31,7 @@ const createWindow = async () => {
     show: false, // Use 'ready-to-show' event to show window
     height: 480,
     width: 800,
+    frame: false,
     webPreferences: {
       nativeWindowOpen: true,
       preload: join(__dirname, '../../preload/dist/index.cjs'),
