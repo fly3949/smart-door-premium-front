@@ -1,17 +1,26 @@
 <template>
   <div class="menu-camera">
     <img
-      v-if="socketConnected"
+      v-if="socketConnected && imageDataUrl && imageDataUrl.length"
       :src="imageDataUrl"
       class="camera__image"
     >
     <div
-      v-else
-      class="disconnect"
+      v-if="!socketConnected"
+      class="unactive disconnect"
     >
-      <span class="iconfont iconwarning disconnect__icon" />
-      <div class="disconnect__text">
+      <span class="iconfont iconwarning unactive__icon" />
+      <div class="unactive__text">
         服务未连接
+      </div>
+    </div>
+    <div
+      v-if="socketConnected && (!imageDataUrl || !imageDataUrl.length)"
+      class="unactive no-image"
+    >
+      <span class="iconfont iconFaceID unactive__icon" />
+      <div class="unactive__text">
+        无图像信息
       </div>
     </div>
   </div>
@@ -49,13 +58,12 @@ export default defineComponent({
   object-fit: cover;
 }
 
-.disconnect {
+.unactive {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ff5c10;
 
   &__icon {
     font-size: 60px;
@@ -64,6 +72,14 @@ export default defineComponent({
   &__text {
     margin-top: 10px;
     font-size: 16px;
+  }
+
+  &.disconnect {
+    background-color: #ff5c10;
+  }
+
+  &.no-image {
+    background-color: #2d8ddb;
   }
 }
 </style>

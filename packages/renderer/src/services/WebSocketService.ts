@@ -35,7 +35,11 @@ export class WebSocketService {
     });
 
     this.socket.on('camera', (data: string) => {
-      store.commit('setImage', { value: 'data:image/jpg;base64,' + data });
+      if (data && data.length) {
+        store.commit('setImage', { value: 'data:image/jpg;base64,' + data });
+      } else {
+        store.commit('setImage', { value: '' });
+      }
     });
 
     this.socket.on('face_detected', (data:
