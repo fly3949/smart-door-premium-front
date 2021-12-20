@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import router from '../router';
 
 export class WebSocketService {
-  private socket = io(websocketConfig.websocketUrl, {
+  private socket = io(websocketConfig.websocketUrl as string, {
     autoConnect: false,
   });
 
