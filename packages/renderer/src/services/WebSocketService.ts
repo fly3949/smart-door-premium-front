@@ -4,7 +4,6 @@ import { notify } from '@kyvg/vue3-notification';
 
 import { io } from 'socket.io-client';
 import router from '../router';
-import { loadSettings } from './SettingService';
 
 export class WebSocketService {
   private socket = io(websocketConfig.websocketUrl, {
@@ -25,7 +24,6 @@ export class WebSocketService {
       console.log('WebSocket connected, ID:' + this.socket.id);
       store.commit('setSocketConnected', { value: true });
       this.startIntervalFunction();
-      loadSettings();
     });
 
     this.socket.on('disconnect', () => {
@@ -42,23 +40,24 @@ export class WebSocketService {
       }
     });
 
-    this.socket.on('face_detected', (data:
+    this.socket.on('message', (data:
       {
         success: boolean,
-        name: string
+        message: string,
+        data: Record<string, unknown>
       },
     ) => {
       if (data.success) {
         notify({
           type: 'success',
-          title: '识别成功',
-          text: `欢迎回来，${data.name}`,
+          title: '成功',
+          text: data.message,
         });
       } else {
         notify({
           type: 'error',
-          title: '识别失败',
-          text: '未注册的人脸信息',
+          title: '失败',
+          text: data.message,
         });
       }
       console.log(data);
@@ -84,6 +83,33 @@ export class WebSocketService {
       }
       console.log(data);
     });
+
+    this.socket.on('config', (data:
+      {
+        success: boolean,
+        message: string,
+        data: {
+          id: number,
+          name: string
+        }
+      },
+    ) => {
+      if (data.success) {
+        notify({
+          type: 'success',
+          title: '更新配置成功',
+          text: data.message,
+        });
+        store.commit('setSettings', data.data);
+      } else {
+        notify({
+          type: 'error',
+          title: '更新配置失败',
+          text: data.message,
+        });
+      }
+      console.log(data);
+    });
   }
 
   startIntervalFunction() {
@@ -97,6 +123,10 @@ export class WebSocketService {
 
   stopIntervalFunction() {
     window.clearInterval(this.interval);
+  }
+
+  emit(topic: string, message?: unknown) {
+    this.socket.emit(topic, message);
   }
 
   static getInstance () {

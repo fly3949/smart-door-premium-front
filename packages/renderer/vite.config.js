@@ -25,6 +25,7 @@ const config = {
     fs: {
       strict: true,
     },
+    port: 6677,
   },
   build: {
     sourcemap: true,

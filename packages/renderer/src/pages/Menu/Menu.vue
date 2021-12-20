@@ -26,7 +26,7 @@
         <span class="iconfont iconimage-text" />
       </div>
       <div class="grid__text">
-        宿舍文化
+        系统公告
       </div>
     </div>
     <div

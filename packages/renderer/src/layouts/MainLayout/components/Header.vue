@@ -3,7 +3,7 @@
     <div class="left flex">
       <div class="block block--blue" />
       <div class="title">
-        517 智慧门禁系统
+        {{ name }}
       </div>
     </div>
     <div class="right flex">
@@ -11,6 +11,24 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useStore }from 'vuex';
+
+export default defineComponent({
+  setup() {
+    const store = useStore();
+
+    const name = computed(() => {
+      return store.getters.settings.name;
+    });
+
+    return {name};
+  },
+});
+</script>
+
 
 <style lang="scss" scoped>
 .header {

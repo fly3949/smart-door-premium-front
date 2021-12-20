@@ -3,19 +3,9 @@
     <NavBar title="设置菜单" />
     <div class="items">
       <Item
-        title="人员管理"
-        path="/setting-page-users"
+        title="更新配置"
         class="item"
-      />
-      <Item
-        title="系统设置"
-        path="/setting-page-config"
-        class="item"
-      />
-      <Item
-        title="系统功能"
-        path="/"
-        class="item"
+        @click="handleUpdateConfig"
       />
     </div>
   </div>
@@ -25,9 +15,20 @@
 import { defineComponent } from 'vue';
 import NavBar from '../../components/NavBar.vue';
 import Item from './components/Item.vue';
+import { WebSocketService } from '../../services/WebSocketService';
 
 export default defineComponent({
   components: { NavBar, Item },
+  setup() {
+    const handleUpdateConfig = () => {
+      const ws = WebSocketService.getInstance();
+      ws.emit('get_config', {});
+    };
+
+    return {
+      handleUpdateConfig,
+    };
+  },
 });
 </script>
 

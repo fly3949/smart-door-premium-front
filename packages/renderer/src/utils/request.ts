@@ -1,11 +1,12 @@
 import { notify } from '@kyvg/vue3-notification';
 import axios from 'axios';
+import httpConfig from '../../../main/config/http';
 
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
-  baseURL: 'http://localhost:5000',
-  timeout: 15000, // 请求超时时间
+  baseURL: httpConfig.httpUrl,
+  timeout: 8000, // 请求超时时间
 });
 
 // 异常拦截处理器
@@ -25,14 +26,14 @@ request.interceptors.request.use(config => {
 
 // response interceptor
 request.interceptors.response.use((response) => {
-  const code = response.data.code;
-  const msg = response.data.msg;
+  const success = response.data.success;
+  const message = response.data.message;
 
-  if (code !== 0) {
+  if (!success) {
     notify({
       type: 'error',
       title: '错误',
-      text: msg,
+      text: message,
     });
     return Promise.reject(response);
   }

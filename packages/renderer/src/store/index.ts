@@ -4,9 +4,7 @@ const store = createStore({
   state: () => ({
     socketConnected: false,
     settings: {
-      cameraIndex: '',
-      adminPassword: '',
-      sleepTime: '',
+      name: '',
     },
     image: '',
   }),
