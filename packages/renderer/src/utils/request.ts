@@ -5,7 +5,7 @@ import httpConfig from '../../../main/config/http';
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
-  baseURL: httpConfig.httpUrl,
+  baseURL: httpConfig.httpUrl as string,
   timeout: 8000, // 请求超时时间
 });
 
