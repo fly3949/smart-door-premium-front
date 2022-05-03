@@ -49,6 +49,6 @@ export default defineComponent({
 
 <style lang="scss">
 .setting-auth {
-  width: 480px;
+  width: 700px;
 }
 </style>

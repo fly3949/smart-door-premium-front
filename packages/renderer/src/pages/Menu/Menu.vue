@@ -26,7 +26,7 @@
         <span class="iconfont iconimage-text" />
       </div>
       <div class="grid__text">
-        系统公告
+        宿舍状态
       </div>
     </div>
     <div
@@ -86,8 +86,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .grids {
   margin-top: 20px;
-  width: 480px;
-  height: 340px;
+  width: 700px;
+  height: 440px;
   display: grid;
   grid-template-columns: repeat(3, 33.33%);
   grid-template-rows: 65% 35%;
@@ -110,13 +110,13 @@ export default defineComponent({
 
         .iconfont {
           color: #ffffff;
-          font-size: 48px;
+          font-size: 60px;
         }
       }
 
       .grid__text {
         color: #ffffff;
-        font-size: 14px;
+        font-size: 18x;
       }
     }
 
@@ -143,9 +143,9 @@ export default defineComponent({
     }
 
     &--weather {
-      height: 248px;
-      width: 178px;
-      transform: scale(0.89625);
+      height: 287px;
+      width: 233px;
+      /* transform: scale(0.89625); */
       transform-origin: 0 0;
       pointer-events: none;
     }

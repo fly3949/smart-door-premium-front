@@ -14,8 +14,8 @@ export default defineComponent({
       window.WIDGET = {
         CONFIG: {
           layout: '2',
-          width: 178,
-          height: 248,
+          width: 233,
+          height: 287,
           background: '1',
           dataColor: 'FFFFFF',
           city: 'CN101030500',

@@ -53,6 +53,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .password-enter {
-  width: 480px;
+  width: 700px;
 }
 </style>

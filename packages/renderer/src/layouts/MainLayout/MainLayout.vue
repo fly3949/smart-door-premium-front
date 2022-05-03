@@ -101,7 +101,7 @@ export default defineComponent({
 
     .info {
       position: absolute;
-      top: 350px;
+      top: 450px;
     }
   }
 }
